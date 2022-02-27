@@ -8,11 +8,12 @@ let players = document.querySelectorAll(".player");
 const string = document.querySelector("tr");
 const race = document.querySelector("tbody");
 const cells = string.querySelectorAll("td");
-const redPlayer = document.getElementById("red");
+const redPlayer = document.querySelector("red");
 const leadersTable = document.querySelector(".leadersTable");
 let positionFinish = race.getBoundingClientRect().left + race.getBoundingClientRect().width;
 const positionStart = race.getBoundingClientRect().left;
 let numberOfPlayers = players.length;
+const playerWidth = players[0].getBoundingClientRect().width;
 
 const sleep = ms => new Promise(r => setTimeout(r, ms));
 
@@ -30,13 +31,18 @@ buttonStart.addEventListener('click', async (event) => {
 
     while (flag) {
         players.forEach(item => {
+            let randomStep = Math.floor(Math.random() * (88 - 10)) + 10;
             let positionPlayer = item.getBoundingClientRect().left;
             
-            move(item, positionPlayer, Math.floor(Math.random() * (88 - 10)) + 10);
+            if (positionPlayer + randomStep > positionFinish) {
+                randomStep = positionFinish - positionPlayer - playerWidth;
+            }
+            
+            move(item, positionPlayer, randomStep);
 
             positionPlayer = item.getBoundingClientRect().left;
-
-            if (positionPlayer >= positionFinish) {
+            
+            if (positionPlayer + playerWidth == positionFinish) {
                 flag = false;
             }
         })
