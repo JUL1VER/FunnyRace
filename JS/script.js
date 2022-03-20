@@ -14,6 +14,7 @@ let positionFinish = race.getBoundingClientRect().left + race.getBoundingClientR
 const positionStart = race.getBoundingClientRect().left;
 let numberOfPlayers = players.length;
 const playerWidth = players[0].getBoundingClientRect().width;
+let maxId = 3;
 
 const sleep = ms => new Promise(r => setTimeout(r, ms));
 
@@ -34,7 +35,7 @@ buttonStart.addEventListener('click', async (event) => {
             let randomStep = Math.floor(Math.random() * (88 - 10)) + 10;
             let positionPlayer = item.getBoundingClientRect().left;
             
-            if (positionPlayer + randomStep > positionFinish) {
+            if (positionPlayer + randomStep >= positionFinish) {
                 randomStep = positionFinish - positionPlayer - playerWidth;
             }
             
@@ -69,7 +70,7 @@ buttonAddPlayer.addEventListener('click', () => {
 
     const newPlayer = document.createElement('div');
     newPlayer.classList.add('player');
-    newPlayer.id = `${Math.floor(Math.random() * (880 - 100) + 100)}`;
+    newPlayer.id = maxId++;
     newPlayer.style = "background-color: " + '#' + (Math.random().toString(16) + '000000').substring(2,8).toUpperCase();
 
     race.appendChild(newPlayerRow);
@@ -84,8 +85,6 @@ buttonAddPlayer.addEventListener('click', () => {
 buttonAddPlayer.addEventListener('click', () => {
     players = document.querySelectorAll(".player");
 })
-
-
 
 
 
