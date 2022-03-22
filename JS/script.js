@@ -14,7 +14,8 @@ let positionFinish = race.getBoundingClientRect().left + race.getBoundingClientR
 const positionStart = race.getBoundingClientRect().left;
 let numberOfPlayers = players.length;
 const playerWidth = players[0].getBoundingClientRect().width;
-let maxId = 3;
+let maxId = 2;
+const finishedPlayers = [];
 
 const sleep = ms => new Promise(r => setTimeout(r, ms));
 
@@ -26,6 +27,17 @@ function move(element, from, step) {
     from += step;
     element.style.left = from + 'px';
 }
+
+let scoreMap = new Map();
+let pointMap = new Map([
+    ['first', 3],
+    ['scd', 2],
+    ['thr', 1]
+]);
+
+players.forEach((item, index) => {
+    scoreMap.set(index + '', 0)
+})
 
 buttonStart.addEventListener('click', async (event) => {
     let flag = true;
@@ -51,6 +63,24 @@ buttonStart.addEventListener('click', async (event) => {
         await sleep(100);
     }
 
+    players.forEach(i => {
+        finishedPlayers.push({id: i.id, position: i.getBoundingClientRect().left});
+    })
+
+    finishedPlayers.sort((player1, player2) => {
+        if (player1.position > player2.position) {
+            return -1;
+        }
+        if (player1.position < player2.position) {
+            return 1;
+        }
+        return 0;
+    })
+
+    scoreMap.set(finishedPlayers[0].id, scoreMap.get(finishedPlayers[0].id) + pointMap.get('first'))
+    scoreMap.set(finishedPlayers[1].id, scoreMap.get(finishedPlayers[1].id) + pointMap.get('scd'))
+    scoreMap.set(finishedPlayers[2].id, scoreMap.get(finishedPlayers[2].id) + pointMap.get('thr'))
+
     players.forEach(item => {
         finish(item, positionStart);
     })
@@ -72,6 +102,7 @@ buttonAddPlayer.addEventListener('click', () => {
     newPlayer.classList.add('player');
     newPlayer.id = maxId++;
     newPlayer.style = "background-color: " + '#' + (Math.random().toString(16) + '000000').substring(2,8).toUpperCase();
+    scoreMap.set(newPlayer.id, 0);
 
     race.appendChild(newPlayerRow);
     newPlayerRow.appendChild(startPlayerCell);
