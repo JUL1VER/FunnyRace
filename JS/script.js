@@ -16,6 +16,7 @@ let numberOfPlayers = players.length;
 const playerWidth = players[0].getBoundingClientRect().width;
 let maxId = 3;
 const field = document.querySelector('.wrapperField');
+let counter = 0;
 
 const sleep = ms => new Promise(r => setTimeout(r, ms));
 
@@ -40,8 +41,12 @@ players.forEach((item, index) => {
 })
 
 buttonStart.addEventListener('click', async (e) => {
+    
+    counter = counter + 1;
+
     buttonStart.disabled = true;
     buttonAddPlayer.disabled = true;
+
     let flag = true;
     const finishedPlayers = [];
 
@@ -100,6 +105,11 @@ buttonStart.addEventListener('click', async (e) => {
     players.forEach(item => {
         finish(item, positionStart);
     })
+    
+    let inputCycles = '';
+    inputCycles += `<div style="margin: 20px 0px 0px 40px; font-size: 35px">Число кругов - ${counter}</div>`;
+    let cyclesRace = document.getElementsByClassName('cycles');
+    cyclesRace[0].innerHTML = inputCycles;
     buttonStart.disabled = false;
     buttonAddPlayer.disabled = false;
 })
