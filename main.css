@@ -30,6 +30,7 @@
     z-index: 0;
     border-radius: 10px;
     font-family: 'Roboto Condensed', sans-serif;
+    font-size: 20px;
 }
 
 .glow-on-hover:before {
@@ -158,4 +159,8 @@ td{
     align-content: center;
     line-height: 70px;
     font-size: 35px;
+}
+
+.oneString{
+    list-style-type: none
 }

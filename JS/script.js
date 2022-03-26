@@ -88,12 +88,11 @@ buttonStart.addEventListener('click', async (e) => {
 
     mapSort1.forEach((item, index) => {
         inputString += `
-            <li>Игрок ${+index+1} - ${item} очков </li>
+            <li style="font-size: 30px">Игрок ${+index+1} - ${item} очков </li>
         `
     });
 
     let playersResults = document.getElementsByClassName('oneString');
-    console.log(playersResults);
     playersResults[0].innerHTML = inputString;
 
     players.forEach(item => {
