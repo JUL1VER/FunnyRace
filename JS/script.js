@@ -14,7 +14,7 @@ let positionFinish = race.getBoundingClientRect().left + race.getBoundingClientR
 const positionStart = race.getBoundingClientRect().left;
 let numberOfPlayers = players.length;
 const playerWidth = players[0].getBoundingClientRect().width;
-let maxId = 2;
+let maxId = 3;
 const field = document.querySelector('.wrapperField');
 
 const sleep = ms => new Promise(r => setTimeout(r, ms));
