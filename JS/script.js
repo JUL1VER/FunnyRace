@@ -40,6 +40,8 @@ players.forEach((item, index) => {
 })
 
 buttonStart.addEventListener('click', async (e) => {
+    buttonStart.disabled = true;
+    buttonAddPlayer.disabled = true;
     let flag = true;
     const finishedPlayers = [];
 
@@ -98,6 +100,8 @@ buttonStart.addEventListener('click', async (e) => {
     players.forEach(item => {
         finish(item, positionStart);
     })
+    buttonStart.disabled = false;
+    buttonAddPlayer.disabled = false;
 })
 
 const toggleTable = () => {
