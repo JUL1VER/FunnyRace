@@ -15,7 +15,7 @@ const positionStart = race.getBoundingClientRect().left;
 let numberOfPlayers = players.length;
 const playerWidth = players[0].getBoundingClientRect().width;
 let maxId = 2;
-const finishedPlayers = [];
+const field = document.querySelector('.wrapperField');
 
 const sleep = ms => new Promise(r => setTimeout(r, ms));
 
@@ -39,8 +39,9 @@ players.forEach((item, index) => {
     scoreMap.set(index + '', 0)
 })
 
-buttonStart.addEventListener('click', async (event) => {
+buttonStart.addEventListener('click', async (e) => {
     let flag = true;
+    const finishedPlayers = [];
 
     while (flag) {
         players.forEach(item => {
@@ -81,6 +82,20 @@ buttonStart.addEventListener('click', async (event) => {
     scoreMap.set(finishedPlayers[1].id, scoreMap.get(finishedPlayers[1].id) + pointMap.get('scd'))
     scoreMap.set(finishedPlayers[2].id, scoreMap.get(finishedPlayers[2].id) + pointMap.get('thr'))
 
+    let inputString = '';
+
+    const mapSort1 = new Map([...scoreMap.entries()].sort((a, b) => b[1] - a[1]));
+
+    mapSort1.forEach((item, index) => {
+        inputString += `
+            <li>Игрок ${+index+1} - ${item} очков </li>
+        `
+    });
+
+    let playersResults = document.getElementsByClassName('oneString');
+    console.log(playersResults);
+    playersResults[0].innerHTML = inputString;
+
     players.forEach(item => {
         finish(item, positionStart);
     })
@@ -102,6 +117,9 @@ buttonAddPlayer.addEventListener('click', () => {
     newPlayer.classList.add('player');
     newPlayer.id = maxId++;
     newPlayer.style = "background-color: " + '#' + (Math.random().toString(16) + '000000').substring(2,8).toUpperCase();
+    newPlayer.innerHTML = `
+        ${+newPlayer.id+1}
+    `
     scoreMap.set(newPlayer.id, 0);
 
     race.appendChild(newPlayerRow);
@@ -120,7 +138,12 @@ buttonAddPlayer.addEventListener('click', () => {
 
 
 
-
+// const finishbl = document.querySelector('.finish')
+// finishbl.addEventListener('click', () => {
+//     players.forEach(item => {
+//         finish(item, positionStart);
+//     })
+// })
 
 
 // var movePlayer = function f(elem) {
