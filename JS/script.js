@@ -47,10 +47,10 @@ buttonStart.addEventListener('click', async (e) => {
     buttonStart.disabled = true;
     buttonAddPlayer.disabled = true;
 
-    let flag = true;
+    let nobodyFinished = true;
     const finishedPlayers = [];
 
-    while (flag) {
+    while (nobodyFinished) {
         players.forEach(item => {
             let randomStep = Math.floor(Math.random() * (88 - 10)) + 10;
             let positionPlayer = item.getBoundingClientRect().left;
@@ -64,7 +64,7 @@ buttonStart.addEventListener('click', async (e) => {
             positionPlayer = item.getBoundingClientRect().left;
             
             if (positionPlayer + playerWidth == positionFinish) {
-                flag = false;
+                nobodyFinished = false;
             }
         })
         
