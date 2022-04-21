@@ -1,6 +1,6 @@
 "use strict";
 
-const buttons = document.querySelectorAll("myButton");
+const buttons = document.querySelectorAll(".myButton");
 const buttonStart = buttons[0];
 const buttonTable = buttons[1];
 const buttonAddPlayer = buttons[2];
