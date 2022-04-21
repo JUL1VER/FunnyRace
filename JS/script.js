@@ -4,19 +4,18 @@ const buttons = document.querySelectorAll("myButton");
 const buttonStart = buttons[0];
 const buttonTable = buttons[1];
 const buttonAddPlayer = buttons[2];
+let players = document.querySelectorAll(".player");
 const string = document.querySelector("tr");
 const race = document.querySelector("tbody");
 const cells = string.querySelectorAll("td");
 const redPlayer = document.querySelector("red");
 const leadersTable = document.querySelector(".leadersTable");
+const positionFinish = race.getBoundingClientRect().left + race.getBoundingClientRect().width;
 const positionStart = race.getBoundingClientRect().left;
-const playerWidth = players[0].getBoundingClientRect().width;
-const field = document.querySelector('.wrapperField');
-
-let players = document.querySelectorAll(".player");
-let positionFinish = race.getBoundingClientRect().left + race.getBoundingClientRect().width;
 let numberOfPlayers = players.length;
+const playerWidth = players[0].getBoundingClientRect().width;
 let maxId = 3;
+const field = document.querySelector('.wrapperField');
 let counter = 0;
  
 const sleep = ms => new Promise(r => setTimeout(r, ms));
