@@ -1,6 +1,6 @@
 "use strict";
 
-const buttons = document.querySelectorAll(".glow-on-hover");
+const buttons = document.querySelectorAll("myButton");
 const buttonStart = buttons[0];
 const buttonTable = buttons[1];
 const buttonAddPlayer = buttons[2];
@@ -35,7 +35,7 @@ let pointMap = new Map([
     ['scd', 2],
     ['thr', 1]
 ]);
-
+ 
 players.forEach((item, index) => {
     scoreMap.set(index + '', 0)
 })
