@@ -17,7 +17,7 @@ const playerWidth = players[0].getBoundingClientRect().width;
 let maxId = 3;
 const field = document.querySelector('.wrapperField');
 let counter = 0;
-
+ 
 const sleep = ms => new Promise(r => setTimeout(r, ms));
 
 function finish(element, from) {
