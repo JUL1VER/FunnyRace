@@ -1,10 +1,10 @@
 "use strict";
 
+let players = document.querySelectorAll(".player");
 const buttons = document.querySelectorAll(".myButton");
 const buttonStart = buttons[0];
 const buttonTable = buttons[1];
 const buttonAddPlayer = buttons[2];
-let players = document.querySelectorAll(".player");
 const string = document.querySelector("tr");
 const race = document.querySelector("tbody");
 const cells = string.querySelectorAll("td");
@@ -12,10 +12,10 @@ const redPlayer = document.querySelector("red");
 const leadersTable = document.querySelector(".leadersTable");
 const positionFinish = race.getBoundingClientRect().left + race.getBoundingClientRect().width;
 const positionStart = race.getBoundingClientRect().left;
-let numberOfPlayers = players.length;
 const playerWidth = players[0].getBoundingClientRect().width;
-let maxId = 3;
 const field = document.querySelector('.wrapperField');
+let numberOfPlayers = players.length;
+let maxId = 3;
 let counter = 0;
  
 const sleep = ms => new Promise(r => setTimeout(r, ms));
