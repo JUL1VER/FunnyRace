@@ -18,6 +18,8 @@ let numberOfPlayers = players.length;
 let maxId = 3;
 let counter = 0;
  
+null == undefined
+
 const sleep = ms => new Promise(r => setTimeout(r, ms));
 
 function finish(element, from) {
